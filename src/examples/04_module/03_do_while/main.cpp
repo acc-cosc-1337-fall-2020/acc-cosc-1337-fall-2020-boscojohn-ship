@@ -1,6 +1,8 @@
+#include <iostream>
 
-int main() 
-{	
-	
-	return 0;
+using std::cout;   using std::cin;
+int main()
+{
+    prompt_user();
+    return 0;
 }
