@@ -9,11 +9,21 @@ string tic_tac_toe::get_player() const
 {
     return player;
 }
+string tic_tac_toe::get_winner()
+{
+    return winner;
+}
 void tic_tac_toe::set_next_player (){
     if (player == "X")
         player == "O";
     else 
         player == "X";
+}
+void tic_tac_toe::set_winner (){
+    if (player == "X")
+        winner == "O";
+    else 
+        winner == "X";
 }
 
 void tic_tac_toe::clear_board()
@@ -31,7 +41,7 @@ void tic_tac_toe::clear_board()
 }
 
 void tic_tac_toe::start_game(string first_player){
-    string player = first_player;
+    player = first_player;
     clear_board(); 
 }
 
@@ -88,6 +98,49 @@ bool tic_tac_toe::check_board_full(){
     
 }
 
+bool tic_tac_toe::check_column_win(){
+    if ((board[0] == "X" && board[3] == "X" && board[6] == "X") || (board[0] == "O" && board[3] == "O" && board[6] == "O") || (board[1] == "X" && board[4] == "X" && board[7] == "X") || (board[1] == "O" && board[4] == "O" && board[7] == "O") || (board[2] == "X" && board[5] == "X" && board[8] == "X") || (board[2] == "O" && board[5] == "O" && board[8] == "O"))
+        return true;
+    else
+        return false;
+}
+
+bool tic_tac_toe::check_row_win(){
+    if ((board[0] == "X" && board[1] == "X" && board[2] == "X") || (board[0] == "O" && board[1] == "O" && board[2] == "O") || (board[3] == "X" && board[4] == "X" && board[5] == "X") || (board[3] == "O" && board[4] == "O" && board[5] == "O") || (board[6] == "X" && board[7] == "X" && board[8] == "X") || (board[6] == "O" && board[7] == "O" && board[8] == "O"))
+        return true;
+    else
+        return false;
+}
+
+bool tic_tac_toe::check_diagonal_win(){
+    if ((board[0] == "X" && board[4] == "X" && board[8] == "X") || (board[0] == "O" && board[4] == "O" && board[8] == "O") || (board[6] == "X" && board[4] == "X" && board[2] == "X") || (board[6] == "O" && board[4] == "O" && board[2] == "O"))
+        return true;
+    else
+        return false;   
+}
+
 bool tic_tac_toe::game_over(){
-    return check_board_full();
+    if (check_column_win() == true)
+    {
+        set_winner();
+        return true;
+    }
+    else if (check_row_win() == true)
+    {
+        set_winner();
+        return true;
+    }
+    else if (check_diagonal_win() == true)
+    {
+        set_winner();
+        return true;
+    }
+    else if (check_board_full() == true)
+    {
+        winner = "C";
+        return true;
+    }
+    else
+        return false;
+    
 }
