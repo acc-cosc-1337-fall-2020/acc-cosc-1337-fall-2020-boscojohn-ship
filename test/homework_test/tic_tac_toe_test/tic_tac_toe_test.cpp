@@ -9,18 +9,15 @@ TEST_CASE("Verify Test Configuration", "verification") {
 TEST_CASE("Plays tic tac toe")
 {
 	tic_tac_toe game;
-	REQUIRE(game.start_game('X')=true);
-	REQUIRE(game.mark_board(1) == 'X');
-	REQUIRE(game.mark_board(2) == 'O');
-	REQUIRE(game.mark_board(3) == 'X');
-	REQUIRE(game.mark_board(4) == 'O');
-	REQUIRE(game.mark_board(5) == 'X');
-	REQUIRE(game.mark_board(7) == 'O');
-	REQUIRE(game.mark_board(6) == 'X');
+	REQUIRE(game.start_game("X"))
+	REQUIRE(game.mark_board(1) == "X");
+	REQUIRE(game.mark_board(2) == "O");
+	REQUIRE(game.mark_board(3) == "X");
+	REQUIRE(game.mark_board(4) == "O");
+	REQUIRE(game.mark_board(5) == "X");
+	REQUIRE(game.mark_board(6) == 'O');
+	REQUIRE(game.mark_board(7) = 'X');
 	REQUIRE(game.mark_board(9) == 'O');
 	REQUIRE(game.mark_board(8) == 'X');
-
-
-
 }
 

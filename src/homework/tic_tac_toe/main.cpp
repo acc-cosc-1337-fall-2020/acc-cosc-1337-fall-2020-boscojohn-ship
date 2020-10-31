@@ -6,12 +6,16 @@ using std::cout; using std::cin; using std::string;
 int main() 
 {
 	tic_tac_toe game;
-	char player = 'X';
-	while (game.check_game_full() == false)
+	int position;
+	game.start_game("X");
+	game.game_over();
+	while (full == false)
 	{
+		cout<< "Enter a position: ";
+		cin>> position;
 		game.display_board();
-		game.mark_board();
-		game.set_next_player();
-	}
+		game.mark_board(position);
+		game.display_board();
+	}	
 	return 0;
 }

@@ -1,6 +1,7 @@
 //h
+#include <vector>
 #include <string>
-using std::string;
+using std::string; using std::vector;
 
 class tic_tac_toe
 {
@@ -10,10 +11,11 @@ class tic_tac_toe
         void mark_board(int position);
         string get_player() const;
         void display_board() const;
+
     private:
         void set_next_player();
         bool check_board_full();
         void clear_board();
         string player = "X";
-        char board[3][3];
+        vector<string> board;
     };
