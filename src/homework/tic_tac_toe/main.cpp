@@ -10,9 +10,14 @@ int main()
 	int position;
 	cout<<"Would you like to play the game?(Y/N): ";
 	cin>>choice;
+	string player;
+
 	do
 	{
 		game.start_game("X");
+		cout<<"Enter X or O ";
+		cin>>player;
+		game.start_game(player);
 		while (game.game_over() == false)
 		{
 			game.display_board();
@@ -22,8 +27,6 @@ int main()
 		}
 		cout<<"Would you like to play again?(Y/N): ";
 		cin>>choice;
-
 	} while(choice == "Y");
-
 	return 0;
 }

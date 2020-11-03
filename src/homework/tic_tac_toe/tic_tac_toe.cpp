@@ -4,7 +4,6 @@
 #include <iostream>
 using std::string; using std::cout; using std::cin; using std::endl;
 
-
 string tic_tac_toe::get_player() const
 {
     return player;
@@ -16,14 +15,19 @@ string tic_tac_toe::get_winner()
 void tic_tac_toe::set_next_player (){
     if (player == "X")
         player == "O";
+        player = "O";
     else 
         player == "X";
+        player = "X";
 }
 void tic_tac_toe::set_winner (){
     if (player == "X")
         winner == "O";
-    else 
+        winner = "O";
+    else {
         winner == "X";
+        winner = "X";
+    }
 }
 
 void tic_tac_toe::clear_board()
@@ -39,7 +43,6 @@ void tic_tac_toe::clear_board()
     board[7] = " ";
     board[8] = " ";
 }
-
 void tic_tac_toe::start_game(string first_player){
     player = first_player;
     clear_board(); 
@@ -64,6 +67,7 @@ void tic_tac_toe::mark_board(int position){
         board[7] = player;
     else if (position == 9)
         board[8] = player;
+    board[position-1] = player;
     set_next_player();
 }
 
@@ -78,6 +82,7 @@ void tic_tac_toe::display_board() const{
     board[6] = "7";
     board[7] = "8";
     board[8] = "9";
+
     cout << "   " << "    |   " << "    |   " << endl;
     cout << "   " << board[0] << "   |   " << board[1] << "   |   " << board[2] << endl;
     cout << "   " << "    |   " << "    |   " << endl;
@@ -89,6 +94,9 @@ void tic_tac_toe::display_board() const{
 bool tic_tac_toe::check_board_full(){
     bool full;
     if ((board[0] == " ") || (board[1] == " ") || (board[2] == " ") || (board[3] == " ") || (board[4] == " ") || (board[5] == " ") || (board[6] == " ") || (board[7] == " ") || (board[8] == " "))
+    if ((board[0] == " ") || (board[1] == " ") || (board[2] == " ") || 
+    (board[3] == " ") || (board[4] == " ") || (board[5] == " ") || 
+    (board[6] == " ") || (board[7] == " ") || (board[8] == " "))
         full = false;
     else
     {
@@ -100,6 +108,12 @@ bool tic_tac_toe::check_board_full(){
 
 bool tic_tac_toe::check_column_win(){
     if ((board[0] == "X" && board[3] == "X" && board[6] == "X") || (board[0] == "O" && board[3] == "O" && board[6] == "O") || (board[1] == "X" && board[4] == "X" && board[7] == "X") || (board[1] == "O" && board[4] == "O" && board[7] == "O") || (board[2] == "X" && board[5] == "X" && board[8] == "X") || (board[2] == "O" && board[5] == "O" && board[8] == "O"))
+    if ((board[0] == "X" && board[3] == "X" && board[6] == "X") || 
+    (board[0] == "O" && board[3] == "O" && board[6] == "O") || 
+    (board[1] == "X" && board[4] == "X" && board[7] == "X") || 
+    (board[1] == "O" && board[4] == "O" && board[7] == "O") || 
+    (board[2] == "X" && board[5] == "X" && board[8] == "X") || 
+    (board[2] == "O" && board[5] == "O" && board[8] == "O"))
         return true;
     else
         return false;
@@ -107,6 +121,12 @@ bool tic_tac_toe::check_column_win(){
 
 bool tic_tac_toe::check_row_win(){
     if ((board[0] == "X" && board[1] == "X" && board[2] == "X") || (board[0] == "O" && board[1] == "O" && board[2] == "O") || (board[3] == "X" && board[4] == "X" && board[5] == "X") || (board[3] == "O" && board[4] == "O" && board[5] == "O") || (board[6] == "X" && board[7] == "X" && board[8] == "X") || (board[6] == "O" && board[7] == "O" && board[8] == "O"))
+    if ((board[0] == "X" && board[1] == "X" && board[2] == "X") || 
+    (board[0] == "O" && board[1] == "O" && board[2] == "O") || 
+    (board[3] == "X" && board[4] == "X" && board[5] == "X") || 
+    (board[3] == "O" && board[4] == "O" && board[5] == "O") || 
+    (board[6] == "X" && board[7] == "X" && board[8] == "X") || 
+    (board[6] == "O" && board[7] == "O" && board[8] == "O"))
         return true;
     else
         return false;
@@ -114,11 +134,14 @@ bool tic_tac_toe::check_row_win(){
 
 bool tic_tac_toe::check_diagonal_win(){
     if ((board[0] == "X" && board[4] == "X" && board[8] == "X") || (board[0] == "O" && board[4] == "O" && board[8] == "O") || (board[6] == "X" && board[4] == "X" && board[2] == "X") || (board[6] == "O" && board[4] == "O" && board[2] == "O"))
+    if ((board[0] == "X" && board[4] == "X" && board[8] == "X") || 
+    (board[0] == "O" && board[4] == "O" && board[8] == "O") || 
+    (board[6] == "X" && board[4] == "X" && board[2] == "X") || 
+    (board[6] == "O" && board[4] == "O" && board[2] == "O"))
         return true;
     else
         return false;   
 }
-
 bool tic_tac_toe::game_over(){
     if (check_column_win() == true)
     {

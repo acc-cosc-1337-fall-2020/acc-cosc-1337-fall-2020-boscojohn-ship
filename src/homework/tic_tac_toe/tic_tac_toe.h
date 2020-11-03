@@ -12,8 +12,6 @@ class tic_tac_toe
         void display_board() const;
         string get_player() const;
         string get_winner();
-
-
     private:
         void set_next_player();
         void set_winner();
@@ -24,5 +22,6 @@ class tic_tac_toe
         bool check_diagonal_win();
         string player;
         vector<string> board;
+        vector<string> board{9, " "};
         string winner;
-    };
+    }; 
