@@ -38,12 +38,15 @@ TEST_CASE ("Test win by first column")
 	tic_tac_toe game;
 	game.start_game("X");
 	game.mark_board(1);
+	REQUIRE(game.game_over()==false);
+	game.mark_board(2);
+	REQUIRE(game.game_over()==false);
 	game.mark_board(4);
+	REQUIRE(game.game_over()==false);
+	game.mark_board(3);
+	REQUIRE(game.game_over()==false);
 	game.mark_board(7);
-	game.start_game("O");
-	game.mark_board(1);
-	game.mark_board(4);
-	game.mark_board(7);
+	
 	REQUIRE(game.game_over()==true);
 }
 TEST_CASE ("Test win by second column")
@@ -77,12 +80,11 @@ TEST_CASE ("Test win by first row")
 	tic_tac_toe game;
 	game.start_game("X");
 	game.mark_board(1);
+	game.mark_board(4);
 	game.mark_board(2);
+	game.mark_board(5);
 	game.mark_board(3);
-	game.start_game("O");
-	game.mark_board(1);
-	game.mark_board(2);
-	game.mark_board(3);
+	
 	REQUIRE(game.game_over()==true);
 }
 TEST_CASE ("Test win by second row")
