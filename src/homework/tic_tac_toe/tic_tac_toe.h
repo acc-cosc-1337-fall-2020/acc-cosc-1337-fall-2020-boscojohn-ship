@@ -21,7 +21,6 @@ class tic_tac_toe
         bool check_row_win();
         bool check_diagonal_win();
         string player;
-        vector<string> board;
         vector<string> board{9, " "};
         string winner;
     }; 
