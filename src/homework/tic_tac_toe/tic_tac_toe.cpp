@@ -50,6 +50,7 @@ void tic_tac_toe::mark_board(int position){
 }
 
 void tic_tac_toe::display_board() const{
+   
     cout << "   " << "    |   " << "    |   " << endl;
     cout << "   " << board[0] << "   |   " << board[1] << "   |   " << board[2] << endl;
     cout << "   " << "    |   " << "    |   " << endl;

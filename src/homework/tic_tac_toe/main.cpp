@@ -8,13 +8,10 @@ int main()
 	tic_tac_toe game;
 	string choice = "Y";
 	int position;
-	cout<<"Would you like to play the game?(Y/N): ";
-	cin>>choice;
 	string player;
-
+	
 	do
 	{
-		game.start_game("X");
 		cout<<"Enter X or O ";
 		cin>>player;
 		game.start_game(player);
