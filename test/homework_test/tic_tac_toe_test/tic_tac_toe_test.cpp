@@ -11,6 +11,7 @@ TEST_CASE("Test first player set to X")
 	tic_tac_toe game;
 	game.start_game("X");
 	REQUIRE(game.get_player()=="X");
+	REQUIRE(game.get_winner()=="X");
 }
 TEST_CASE("Test first player set to O")
 {
@@ -46,10 +47,7 @@ TEST_CASE ("Test win by first column")
 	game.mark_board(3);
 	REQUIRE(game.game_over()==false);
 	game.mark_board(7);
-<<<<<<< HEAD
-=======
 	
->>>>>>> 6076f8b6e773eaaff5f6e671410dca8b939298ca
 	REQUIRE(game.game_over()==true);
 }
 TEST_CASE ("Test win by second column")
@@ -87,10 +85,7 @@ TEST_CASE ("Test win by first row")
 	game.mark_board(2);
 	game.mark_board(5);
 	game.mark_board(3);
-<<<<<<< HEAD
-=======
 	
->>>>>>> 6076f8b6e773eaaff5f6e671410dca8b939298ca
 	REQUIRE(game.game_over()==true);
 }
 TEST_CASE ("Test win by second row")

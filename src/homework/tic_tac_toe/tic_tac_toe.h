@@ -1,7 +1,7 @@
 //h
 #include <vector>
 #include <string>
-using std::string; using std::vector;
+using std::string; using std::vector; using std::ostream; using std::istream;
 
 class tic_tac_toe
 {
@@ -9,9 +9,10 @@ class tic_tac_toe
         bool game_over();
         void start_game(string first_player);
         void mark_board(int position);
-        void display_board() const;
+        friend ostream& operator<<(ostream& out, tic_tac_toe& b);
+        friend istream& operator>>(istream& in, tic_tac_toe&);
         string get_player() const;
-        string get_winner();
+        virtual string get_winner();
     private:
         void set_next_player();
         void set_winner();
