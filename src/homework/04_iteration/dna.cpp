@@ -1,8 +1,7 @@
 #include "dna.h"
 #include<string>
 #include<iostream>
-using std::string;
-using std::cout; using std::cin;
+using std::string; using std::cout; using std::cin;
 /*
 Write code for function get_gc_content that accepts
 a const reference string parameter and returns a double.
