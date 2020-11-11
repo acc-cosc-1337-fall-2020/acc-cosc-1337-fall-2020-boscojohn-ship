@@ -2,6 +2,7 @@
 #include "decision.h"
 #include <string>
 #include <iostream>
+//This is conditional homework?
 
 std::string get_letter_grade_using_if(int grade)
 {
