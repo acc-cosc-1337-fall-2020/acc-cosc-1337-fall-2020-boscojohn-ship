@@ -8,7 +8,7 @@ using std::string; using std::vector; using std::ostream;
 class tic_tac_toe_manager: public tic_tac_toe
 {
     public:
-        void save_game(const tic_tac_toe b);
+        void save_game(tic_tac_toe b);
         friend ostream& operator<<(ostream& out, const tic_tac_toe_manager & manager);
         void get_winner_total(int& O, int& X, int& T);
         string get_winner();

@@ -18,14 +18,7 @@ string tic_tac_toe::get_winner()
 ostream & operator<<(ostream & out, tic_tac_toe & b)
 {
     vector<string> board{9, " "};
-
-    out <<b.board;
-    cout << "   " << "    |   " << "    |   " << endl;
-    cout << "   " << board[0] << "   |   " << board[1] << "   |   " << board[2] << endl;
-    cout << "   " << "    |   " << "    |   " << endl;
-    cout << "   " << board[3] << "   |   " << board[4] << "   |   " << board[5] << endl;
-    cout << "   " << "    |   " << "    |   " << endl;
-    cout << "   " << board[6] << "   |   " << board[7] << "   |   " << board[8] << endl;
+    out << *board;
     return out;
 }
 istream & operator<<(istream & in, tic_tac_toe & b)
