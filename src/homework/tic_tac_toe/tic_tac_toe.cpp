@@ -15,13 +15,13 @@ string tic_tac_toe::get_winner()
     return winner;
 }
 
-ostream & operator<<(ostream & out, tic_tac_toe & b)
+ostream & operator<<(ostream &out, tic_tac_toe &b )
 {
-    vector<string> board{9, " "};
-    out << *board;
+    out<< "This is the game board"<< "\n";
+    out<<*b.board;
     return out;
 }
-istream & operator<<(istream & in, tic_tac_toe & b)
+istream & operator<<(istream & in, tic_tac_toe &b)
 {
     int position;
     cout << "Enter position: ";
@@ -81,51 +81,21 @@ void tic_tac_toe::mark_board(int position){
 }*/
 
 bool tic_tac_toe::check_board_full(){
-    bool full;
-    if ((board[0] == " ") || (board[1] == " ") || (board[2] == " ") || 
-    (board[3] == " ") || (board[4] == " ") || (board[5] == " ") || 
-    (board[6] == " ") || (board[7] == " ") || (board[8] == " "))
-        full = false;
-    else
-    {
-        full = true;
-    }
-    return full;
+    return true;
     
 }
 
 bool tic_tac_toe::check_column_win(){
-    if ((board[0] == "X" && board[3] == "X" && board[6] == "X") || 
-    (board[0] == "O" && board[3] == "O" && board[6] == "O") || 
-    (board[1] == "X" && board[4] == "X" && board[7] == "X") || 
-    (board[1] == "O" && board[4] == "O" && board[7] == "O") || 
-    (board[2] == "X" && board[5] == "X" && board[8] == "X") || 
-    (board[2] == "O" && board[5] == "O" && board[8] == "O"))
-        return true;
-    else
-        return false;
+    return false;
 }
 
 bool tic_tac_toe::check_row_win(){
-    if ((board[0] == "X" && board[1] == "X" && board[2] == "X") || 
-    (board[0] == "O" && board[1] == "O" && board[2] == "O") || 
-    (board[3] == "X" && board[4] == "X" && board[5] == "X") || 
-    (board[3] == "O" && board[4] == "O" && board[5] == "O") || 
-    (board[6] == "X" && board[7] == "X" && board[8] == "X") || 
-    (board[6] == "O" && board[7] == "O" && board[8] == "O"))
-        return true;
-    else
-        return false;
+    return false;
 }
 
 bool tic_tac_toe::check_diagonal_win(){
-    if ((board[0] == "X" && board[4] == "X" && board[8] == "X") || 
-    (board[0] == "O" && board[4] == "O" && board[8] == "O") || 
-    (board[6] == "X" && board[4] == "X" && board[2] == "X") || 
-    (board[6] == "O" && board[4] == "O" && board[2] == "O"))
-        return true;
-    else
-        return false;   
+    
+    return false;   
 }
 bool tic_tac_toe::game_over(){
     if (check_column_win() == true)
@@ -149,6 +119,5 @@ bool tic_tac_toe::game_over(){
         return true;
     }
     else
-        return false;
-    
+        return false;   
 }

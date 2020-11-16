@@ -2,27 +2,29 @@
 #include "tic_tac_toe_manager.h"
 #include <iostream>
 #include <string>
+#include <memory>
 
-using std::ostream; using std::string; using std::vector;
+using std::ostream; using std::string; using std::vector; using std:: unique_ptr; using std::move;
 
-void tic_tac_toe_manager::save_game(const tic_tac_toe b)
+void tic_tac_toe_manager::save_game(unique_ptr<tic_tac_toe> &b)
 {
-    games.push_back(b);
-    update_winner_count(get_winner());
+    update_winner_count(b->get_winner());
+    games.push_back(move(b));
 }
 
 ostream& operator<<(ostream & out, const tic_tac_toe_manager &manager)
 {
     vector<tic_tac_toe> games;
-    out <<manager;
+    for(auto& game: games)
+        out<<game;
     return out;
 }
 
 void tic_tac_toe_manager::get_winner_total(int& O, int& X, int& T)
 {
-    O ++;
-    X ++;
-    T ++;
+    O = O_win;
+    X = X_win;
+    T = Ties;
 }
 
 void tic_tac_toe_manager::update_winner_count(string winner)
