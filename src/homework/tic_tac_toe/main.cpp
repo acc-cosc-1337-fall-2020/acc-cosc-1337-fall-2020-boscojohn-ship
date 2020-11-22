@@ -1,83 +1,77 @@
-#include "tic_tac_toe_manager.h"
 #include "tic_tac_toe.h"
 #include "tic_tac_toe_3.h"
 #include "tic_tac_toe_4.h"
-#include <iostream>
-#include <string>
-#include <memory>
-using std::cout; using std::cin; using std::string; using std::unique_ptr;
+#include "tic_tac_toe_manager.h"
+#include<limits>
+#include<memory>
+
+using std::cout; using std::cin;
 
 int main() 
-{
-	tic_tac_toe_manager manager;
-	unique_ptr<tic_tac_toe> game;
-	string choice = "Y";
-	string player;
-	int type = 3;
+{	
+	TicTacToeManager manager;
+	std::unique_ptr<TicTacToe> tic_tac_toe;
+	std::string player;
+	
+	char choice;
+	int game_type;
 
-	cout<<"Would you like to play 3x3(3) or 4x4(4): ";
-	cin>>type;
 	do
 	{
-	do
-	{
-		cout<<"Enter X or O ";
-		cin>>player;
-		game->start_game(player);
-		while (game->game_over() == false)
+		cout<<"Enter 3 or 4: ";
+		cin>>game_type;
+
+		while(!cin.good() || (game_type < 3 || game_type > 4))
 		{
-			cout<<game;
-			cin>>game;
+			cin.clear();
+			cin.ignore(5, '\n');
+
+			cout<<"Enter 3 or 4: ";
+			cin>>game_type;
 		}
-		int O = 0;
-		int X = 0;
-		int T = 0;
 
-		manager.save_game;
-		manager.get_winner_total(O, X, T);
-		cout<< "X wins: "<<X;
-		cout<< "O wins: "<<O;
-		cout<< "T ties: "<<T;
-
-
-
-		cout<<"Would you like to play again?(Y/N): ";
-		cin>>choice;
-	} while(choice == "Y");
-	cout<<manager;
-	cout<<"Would you like to play 3x3(3) or 4x4(4): ";
-	cin>>type;
-	}while(type = 3);
-	do
-	{
-	do
-	{
-		cout<<"Enter X or O ";
-		cin>>player;
-		game->start_game(player);
-		while (game->game_over() == false)
+		if(game_type == 3)
 		{
-			cout<<game;
-			cin>>game;
+			tic_tac_toe = std::make_unique<TicTacToe3>();
 		}
-		int O = 0;
-		int X = 0;
-		int T = 0;
+		else
+		{
+			tic_tac_toe = std::make_unique<TicTacToe4>();
+		}
 
-		manager.save_game;
-		manager.get_winner_total(O, X, T);
-		cout<< "X wins: "<<X;
-		cout<< "O wins: "<<O;
-		cout<< "T ties: "<<T;
+		while(player != "X" && player != "x" && player != "O" && player != "o")
+		{
+			cout<<"Enter X or O: ";
+			cin>>player;
+		}
+		
+		tic_tac_toe->start_game(player);
 
+		do
+		{
+			cin>>*tic_tac_toe;
+			cout<<*tic_tac_toe;
 
+		} while (tic_tac_toe->game_over() == false);
 
-		cout<<"Would you like to play again?(Y/N): ";
+		player = "";
+		cout<<"Game over the winner is: "<<tic_tac_toe->get_winner()<<"\n";
+
+		manager.save_game(tic_tac_toe);
+
+		int x_wins, o_wins, ties;
+		manager.get_winner_totals(x_wins, o_wins, ties);
+
+		cout<<"X wins: "<<x_wins<<"\n";
+		cout<<"O wins: "<<o_wins<<"\n";
+		cout<<"Ties  : "<<ties<<"\n\n";
+
+		cout<<"Continue enter y or Y: ";
 		cin>>choice;
-	} while(choice == "Y");
+	
+	}while(choice == 'Y' || choice == 'y');
+
 	cout<<manager;
-	cout<<"Would you like to play 3x3(3) or 4x4(4): ";
-	cin>>type;
-	}while(type = 4);
+
 	return 0;
 }

@@ -9,18 +9,19 @@ Win by column if and return true if
 else
 false
 */
+bool TicTacToe3::check_column_win()
+{
+    for (std::size_t i = 0; i < 3; i++) 
+	{
+		if (pegs[i] == pegs[i + 3] && pegs[i + 3] == pegs[i + 6]
+			&& pegs[i + 6] != " ")
+		{
+			return true;
+		}
+	}
 
-bool tic_tac_toe_3::check_column_win(){
-    if ((board[0] == "X" && board[3] == "X" && board[6] == "X") || 
-    (board[0] == "O" && board[3] == "O" && board[6] == "O") || 
-    (board[1] == "X" && board[4] == "X" && board[7] == "X") || 
-    (board[1] == "O" && board[4] == "O" && board[7] == "O") || 
-    (board[2] == "X" && board[5] == "X" && board[8] == "X") || 
-    (board[2] == "O" && board[5] == "O" && board[8] == "O"))
-        win = true;
-    return win;
+    return false;
 }
-
 
 /*
 class function check_row_win
@@ -29,18 +30,19 @@ Win by row if
 3,4,5 are equal
 6,7,8 are equal
 */
-
-bool tic_tac_toe_3::check_row_win()
+bool TicTacToe3::check_row_win()
 {
-    if ((board[0] == "X" && board[1] == "X" && board[2] == "X") || 
-    (board[0] == "O" && board[1] == "O" && board[2] == "O") || 
-    (board[3] == "X" && board[4] == "X" && board[5] == "X") || 
-    (board[3] == "O" && board[4] == "O" && board[5] == "O") || 
-    (board[6] == "X" && board[7] == "X" && board[8] == "X") || 
-    (board[6] == "O" && board[7] == "O" && board[8] == "O"))
-        win = true;
-    return win;
+    for (std::size_t i = 0; i < 9; i += 3) 
+	{
+		if(pegs[i] == pegs[i+1] && pegs [i+1] == pegs[i+2] && pegs[i] != " ")
+		{
+			return true;
+		}
+	}
+
+    return false;
 }
+
 
 /*
 class function check_diagonal_win
@@ -50,21 +52,13 @@ Win diagonally
 6 7 8
 
 */
+bool TicTacToe3::check_diagonal_win()
+{
+    if((pegs[0] == pegs[4] && pegs[4] == pegs[8] && pegs[0] != " ") ||
+	   (pegs[2] == pegs[4] && pegs[4] == pegs[6] && pegs[2] != " "))
+	{
+		return true;
+	}
 
-bool tic_tac_toe_3::check_diagonal_win(){
-    if ((board[0] == "X" && board[4] == "X" && board[8] == "X") || 
-    (board[0] == "O" && board[4] == "O" && board[8] == "O") || 
-    (board[6] == "X" && board[4] == "X" && board[2] == "X") || 
-    (board[6] == "O" && board[4] == "O" && board[2] == "O"))
-        win = true;
-    return win;
-}
-
-//check if board is full
-bool tic_tac_toe_3::check_board_full(){
-    if ((board[0] == " ") || (board[1] == " ") || (board[2] == " ") || 
-        (board[3] == " ") || (board[4] == " ") || (board[5] == " ") || 
-        (board[6] == " ") || (board[7] == " ") || (board[8] == " "))
-        full = false;
-    return full;
+    return false;    
 }
